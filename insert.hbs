@@ -1,4 +1,4 @@
-
+<br />
 <h4>Available at UoN libraries</h4>
 
 <div id="nottslib-container">
@@ -12,16 +12,25 @@
             <td class="label">Location</td>
             <td class="value">{{ available }}</td>
         </tr>
+        {{ else }}
+        <tr>
+            <td class="label">No results found</td>
+            <td class="value"><a href="{{ manual_search_url }}" target="_blank">Search manually</a></td>
+        </tr>
         {{/each}}
 
     </table>
 
 
-<div id="requestACopy" class="a-button-stack">
-        <span id="buybox-see-all-buying-choices" class="a-button a-spacing-base a-button-primary"><span class="a-button-inner"><a id="buybox-see-all-buying-choices-announce" href="{{ request_link }}" title="See All Buying Options" class="a-button-text" role="button" target="_blank">
+    {{#if results }}
+    <div id="requestACopy" class="a-button-stack">
+        <span id="buybox-see-all-buying-choices" class="a-button a-spacing-base a-button-primary"><span class="a-button-inner"><a id="buybox-see-all-buying-choices-announce" href="{{ results.0.request_link }}" title="Request A Copy" class="a-button-text" role="button" target="_blank">
             Request A Copy
         </a></span></span>
     </div>
+    {{else}}
+    <br />
+    {{/if}}
 
 </div>
 

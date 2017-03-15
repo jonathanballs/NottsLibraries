@@ -8,8 +8,15 @@ console.log("Nottingham University Amazon Checker");
 function renderResponse(response) {
     console.log("Response below:");
     console.log(response);
+    var manual_search_url = "http://aleph.nottingham.ac.uk/F/?func=find-b&request=" +
+            document.getElementById("productTitle").textContent;
+
     var insert = document.createElement("div");
-    insert.innerHTML = Handlebars.templates["insert.hbs"]({'results':response});
+    insert.innerHTML = Handlebars.templates["insert.hbs"](
+            {
+                'results': response,
+                'manual_search_url': manual_search_url
+            });
     insertAfter(insert, document.getElementById("centerCol"));
     console.log("Rendered :)");
 }
