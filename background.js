@@ -7,7 +7,6 @@ chrome.runtime.onMessage.addListener(
 
     function(request, sender, sendResponse) {
         console.log(searchURL + request.isbn10);
-
         console.log("Searching by ISBN");
         var xhr = new XMLHttpRequest();
         xhr.open("GET", searchURL + request.isbn10, true);
@@ -19,14 +18,28 @@ chrome.runtime.onMessage.addListener(
 );
 
 // Parse the html of the search results
-function parseResultsPage(searchParams, searchResults, sendResponse) {
-    // Check if results found
-    if (searchResults.search("No results found") >= 0) {
-        console.log("No results found... Searching by Name");
+function parseResultsPage(searchParams, searchResults, sendResponse, tryNumber) {
 
+    // If no results are found
+    if (searchResults.search("No results found") >= 0
+            || searchResults.search("No exact match") >= 0) {
+
+        // Assume first try if tryNumber is undefined
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", searchURL + searchParams.title, true);
-        xhr.onload = function() { parseResultsPage(searchParams, xhr.responseText, sendResponse) };
+
+        tryNumber = tryNumber || 1;
+        switch (tryNumber) {
+            case 1:
+                console.log("No results found... Searching by boot title");
+                xhr.open("GET", searchURL + searchParams.title, true);
+                break;
+            case 2:
+                console.log("No results found... Returning none");
+                sendResponse([]);
+                return;
+        }
+
+        xhr.onload = function() { parseResultsPage(searchParams, xhr.responseText, sendResponse, ++tryNumber) };
         xhr.send(null);
 
         return true;
