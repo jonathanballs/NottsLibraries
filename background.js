@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
         console.log("Searching by ISBN");
         var xhr = new XMLHttpRequest();
         xhr.open("GET", searchURL + request.isbn10, true);
-        xhr.onload = function() { parseResultsPage(xhr.responseText, sendResponse) };
+        xhr.onload = function() { parseResultsPage(request, xhr.responseText, sendResponse) };
         xhr.send(null);
 
         return true;
@@ -19,10 +19,17 @@ chrome.runtime.onMessage.addListener(
 );
 
 // Parse the html of the search results
-function parseResultsPage(searchResults, sendResponse) {
+function parseResultsPage(searchParams, searchResults, sendResponse) {
     // Check if results found
     if (searchResults.search("No results found") >= 0) {
         console.log("No results found... Searching by Name");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", searchURL + searchParams.title, true);
+        xhr.onload = function() { parseResultsPage(searchParams, xhr.responseText, sendResponse) };
+        xhr.send(null);
+
+        return true;
     }
 
     var tempHolder = document.createElement("div");

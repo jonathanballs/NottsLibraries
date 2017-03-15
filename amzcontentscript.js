@@ -6,6 +6,8 @@ console.log("Nottingham University Amazon Checker");
 
 // Render a table of responses
 function renderResponse(response) {
+    console.log("Response below:");
+    console.log(response);
     var insert = document.createElement("div");
     insert.innerHTML = Handlebars.templates["insert.hbs"]({'results':response});
     insertAfter(insert, document.getElementById("centerCol"));
@@ -23,31 +25,22 @@ if (salesRankInfo) {
     var isBook = salesRankInfo.textContent.search("Books >") >= 0;
 
     // Get ISBN-10
-    var li_tags = document.getElementsByTagName("li");
-    var isbn10 = null;
-    for (var i=0; i<li_tags.length; i++) {
-        if (li_tags[i].textContent.search("ISBN-10:") >= 0) {
-            isbn10 = li_tags[i].textContent.substring(9);
-            break;
-        }
-    }
-    console.log("ISBN-10 detected:" + isbn10);
     var isbn10 = Array
         .from(document.getElementsByTagName("li"))
         .filter((n) => !n.textContent.search("ISBN-10:"))[0]
         .textContent
         .substring(9);
-    console.log("ISBN-10 detected:" + isbn10);
+    console.log("ISBN-10 detected: " + isbn10);
 
-    var bookTitle = document.getElementById("productTitle").textContent;
+    // Get book title
+    var bookTitle = document.getElementById("productTitle")
+        .textContent;
 
+    console.log("Book Title detected: " + bookTitle);
 
     // We can't load an insecure page from a secure one so we must
     // request the background task do that for us.
-    chrome.runtime.sendMessage({isbn10: isbn10}, function(response) {
-        console.log(response);
-        renderResponse(response);
-    });
+    chrome.runtime.sendMessage({isbn10: isbn10, title: bookTitle}, renderResponse);
 
 
 }
