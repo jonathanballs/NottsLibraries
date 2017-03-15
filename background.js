@@ -3,10 +3,12 @@
 
 var searchURL = "http://aleph.nottingham.ac.uk/F/?func=find-b&request=";
 
-console.log("Background task :)");
 chrome.runtime.onMessage.addListener(
 
     function(request, sender, sendResponse) {
+
+        console.log(searchURL + request.isbn10);
+
         var xhr = new XMLHttpRequest();
         xhr.open("GET", searchURL + request.isbn10, false);
         xhr.send(null);
