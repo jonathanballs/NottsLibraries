@@ -1,2 +1,25 @@
-<h1>This is my template</h1>
+
+<h4>Available at UoN libraries</h4>
+
+<div id="nottslib-container">
+    <table>
+        <tr>
+            <td class="label">Title</td>
+            <td class="value">{{ title }}</td>
+        </tr>
+        <tr>
+            <td class="label">Location</td>
+            <td class="value">{{ available }}</td>
+        </tr>
+
+    </table>
+
+
+<div id="requestACopy" class="a-button-stack">
+        <span id="buybox-see-all-buying-choices" class="a-button a-spacing-base a-button-primary"><span class="a-button-inner"><a id="buybox-see-all-buying-choices-announce" href="{{ request_link }}" title="See All Buying Options" class="a-button-text" role="button">
+            Request A Copy
+        </a></span></span>
+    </div>
+
+</div>
 

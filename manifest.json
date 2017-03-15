@@ -12,7 +12,8 @@
           "amzcontentscript.js",
           "handlebars.runtime-latest.js",
           "templates.js"
-      ]
+      ],
+      "css": ["styles/style.css"]
     }
   ],
 

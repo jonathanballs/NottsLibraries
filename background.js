@@ -14,9 +14,41 @@ chrome.runtime.onMessage.addListener(
         var tempHolder = document.createElement("div");
         tempHolder.innerHTML = xhr.responseText;
 
-        var title = tempHolder.getElementsByClassName("uontitle")[0].childNodes[2].data.trim();
-        var num_available = 2
-        sendResponse([{"title": title, "available": num_available}]);
+        // Remove scripts
+        Array
+            .from(tempHolder.getElementsByTagName("script"))
+            .map((x) => x.parentElement.removeChild(x));
+
+        var tables = tempHolder.getElementsByTagName("table");
+        var results_row = Array
+            .from(tables)
+            .filter((x) => x.getAttribute("cellspacing") == "2")[0]
+            .getElementsByTagName("tr")[1];
+
+        var title = results_row
+            .getElementsByClassName("uontitle")[0]
+            .textContent
+            .trim();
+
+        var availibility = results_row
+            .getElementsByTagName("td")[6]
+            .textContent
+            .trim();
+
+        var request_link = results_row
+            .getElementsByTagName("td")[7]
+            .getElementsByTagName("a")[0]
+            .getAttribute("href");
+
+        console.log(request_link);
+
+        sendResponse(
+                {
+                    "title": title,
+                    "available": availibility,
+                    "request_link": request_link
+                }
+        );
     }
 );
 

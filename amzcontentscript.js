@@ -6,12 +6,10 @@ console.log("Nottingham University Amazon Checker");
 
 // Render a table of responses
 function renderResponse(response) {
-    var formats = document.getElementById("formats");
-    var head = document.createElement("h1");
-    head.innerHTML = Handlebars.templates["insert.hbs"]({})
-    //console.log(Handlebars);
-    insertAfter(head, formats);
-
+    var insert = document.createElement("div");
+    insert.innerHTML = Handlebars.templates["insert.hbs"](response);
+    insertAfter(insert, document.getElementById("centerCol"));
+    console.log("Rendered :)");
 }
 // Insert node after
 function insertAfter(newNode, referenceNode) {

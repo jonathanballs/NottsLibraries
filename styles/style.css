@@ -1,0 +1,21 @@
+#centerCol {
+  width: 750px; }
+
+#nottslib-container {
+  width: 1000px; }
+  #nottslib-container table {
+    width: 1000px; }
+    #nottslib-container table td, #nottslib-container table th {
+      padding: 5px;
+      border-top: 1px dotted #ccc; }
+      #nottslib-container table td.label, #nottslib-container table th.label {
+        background-color: #F5F5F5;
+        width: 25%; }
+      #nottslib-container table td.value, #nottslib-container table th.value {
+        width: 75%; }
+  #nottslib-container #requestACopy {
+    width: 200px; }
+  #nottslib-container .a-button-icon {
+    padding-left: 0px !important; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,35 @@
+#centerCol {
+    width: 750px;
+}
+
+#nottslib-container {
+
+    width: 1000px;
+
+    table {
+        width: 1000px;
+        td,th {
+            padding: 5px;
+            border-top: 1px dotted #ccc;
+
+            &.label {
+                background-color: #F5F5F5;
+                width: 25%;
+            }
+
+            &.value {
+                width: 75%;
+            }
+
+        }
+    }
+
+    #requestACopy {
+        width: 200px;
+    }
+
+    .a-button-icon {
+        padding-left: 0px !important;
+    }
+}
+
