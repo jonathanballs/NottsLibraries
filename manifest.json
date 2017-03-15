@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "Nottingham University Libraries for Amazon",
+  "description": "This extension shows a Google Image search result for the current page",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.co.uk/*"],
+      "js": [
+          "amzcontentscript.js",
+          "handlebars.runtime-latest.js",
+          "templates.js"
+      ]
+    }
+  ],
+
+  "background": {
+      "scripts": ["background.js"]
+  },
+
+  "permissions": [
+    "activeTab",
+    "https://amazon.co.uk/",
+    "http://aleph.nottingham.ac.uk/"
+  ]
+}
+
