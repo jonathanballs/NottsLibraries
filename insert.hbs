@@ -12,12 +12,12 @@
             <td class="label">Location</td>
             <td class="value">{{ available }}</td>
         </tr>
-        {{ else }}
+        {{/each}}
+
         <tr>
-            <td class="label">No results found</td>
+            <td class="label">{{#unless results }}No results found{{/unless}}</td>
             <td class="value"><a href="{{ manual_search_url }}" target="_blank">Search manually</a></td>
         </tr>
-        {{/each}}
 
     </table>
 

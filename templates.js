@@ -9,11 +9,7 @@ templates['insert.hbs'] = template({"1":function(container,depth0,helpers,partia
     + alias4(((helper = (helper = helpers.available || (depth0 != null ? depth0.available : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"available","hash":{},"data":data}) : helper)))
     + "</td>\n        </tr>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    var helper;
-
-  return "        <tr>\n            <td class=\"label\">No results found</td>\n            <td class=\"value\"><a href=\""
-    + container.escapeExpression(((helper = (helper = helpers.manual_search_url || (depth0 != null ? depth0.manual_search_url : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"manual_search_url","hash":{},"data":data}) : helper)))
-    + "\" target=\"_blank\">Search manually</a></td>\n        </tr>\n";
+    return "No results found";
 },"5":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -23,11 +19,15 @@ templates['insert.hbs'] = template({"1":function(container,depth0,helpers,partia
 },"7":function(container,depth0,helpers,partials,data) {
     return "    <br />\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
   return "<br />\n<h4>Available at UoN libraries</h4>\n\n<div id=\"nottslib-container\">\n    <table>\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.results : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data})) != null ? stack1 : "")
-    + "\n    </table>\n\n\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.results : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n        <tr>\n            <td class=\"label\">"
+    + ((stack1 = helpers.unless.call(alias1,(depth0 != null ? depth0.results : depth0),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</td>\n            <td class=\"value\"><a href=\""
+    + container.escapeExpression(((helper = (helper = helpers.manual_search_url || (depth0 != null ? depth0.manual_search_url : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"manual_search_url","hash":{},"data":data}) : helper)))
+    + "\" target=\"_blank\">Search manually</a></td>\n        </tr>\n\n    </table>\n\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.results : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.program(7, data, 0),"data":data})) != null ? stack1 : "")
     + "\n</div>\n\n";
 },"useData":true});
