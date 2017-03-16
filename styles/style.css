@@ -1,10 +1,11 @@
 #centerCol {
-  width: 750px; }
+  max-width: 750px; }
 
 #nottslib-container {
-  width: 1000px; }
+  width: 100%; }
   #nottslib-container table {
-    width: 1000px; }
+    width: 100%;
+    max-width: 1050px; }
     #nottslib-container table td, #nottslib-container table th {
       padding: 5px;
       border-top: 1px dotted #ccc; }
