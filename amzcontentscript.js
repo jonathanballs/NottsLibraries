@@ -4,12 +4,14 @@ console.log("Nottingham University Amazon Checker");
 // A few helper functions
 //
 
+var productTitle = null;
+
 // Render a table of responses
 function renderResponse(response) {
     console.log("Response below:");
     console.log(response);
     var manual_search_url = "http://aleph.nottingham.ac.uk/F/?func=find-b&request=" +
-            document.getElementById("productTitle").textContent;
+            productTitle;
 
     var insert = document.createElement("div");
     insert.innerHTML = Handlebars.templates["insert.hbs"](
@@ -42,6 +44,11 @@ if (salesRankInfo) {
     // Get book title
     var bookTitle = document.getElementById("productTitle")
         .textContent;
+    // If from a 'Classic' (e.g. penguin classics, wordsworth classics)range then remove range identifier
+    if (bookTitle.search("Classics\\\)") >= 0)
+        bookTitle = bookTitle.substring(0, bookTitle.search("\\\(") - 1);
+
+    productTitle = bookTitle;
 
     console.log("Book Title detected: " + bookTitle);
 
