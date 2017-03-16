@@ -2,8 +2,9 @@
   "manifest_version": 2,
 
   "name": "Nottingham University Libraries for Amazon",
-  "description": "This extension shows a Google Image search result for the current page",
+  "description": "Provides Nottingham University library search results on Amazon pages",
   "version": "1.0",
+  "icons": { "128" : "images/icon.png" },
 
   "content_scripts": [
     {
